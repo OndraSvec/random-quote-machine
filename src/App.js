@@ -26,7 +26,7 @@ function App() {
     let randomInt = Math.floor(quotesArray.length * Math.random());
     setQuote(quotesArray[randomInt].quote);
     setAuthor(quotesArray[randomInt].author);
-    setColorTheme(COLORS_ARRAY[randomInt]);
+    setColorTheme(COLORS_ARRAY[Math.floor(COLORS_ARRAY.length * Math.random())]);
   }
 
   return (
