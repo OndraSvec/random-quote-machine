@@ -22,11 +22,12 @@ function App() {
    fetchQuotes(quoteDBUrl)
   }, [quoteDBUrl]);
 
-  const setQuoteAndAuthor = () => {
-    setQuote(quotesArray[Math.floor(quotesArray.length * Math.random())].quote);
-    setAuthor(quotesArray[Math.floor(quotesArray.length * Math.random())].author);
-    setColorTheme(COLORS_ARRAY[Math.floor(COLORS_ARRAY.length * Math.random())]);
-  };
+  const getRandomQuote = () => {
+    let randomInt = Math.floor(quotesArray.length * Math.random());
+    setQuote(quotesArray[randomInt].quote);
+    setAuthor(quotesArray[randomInt].author);
+    setColorTheme(COLORS_ARRAY[randomInt]);
+  }
 
   return (
     <div className="App">
@@ -40,7 +41,7 @@ function App() {
           </motion.p>
           <div className='button-container'>
             <motion.button id="twitter-button" initial={{backgroundColor: colorTheme, color: 'white', opacity: 0.1}} animate={{backgroundColor: colorTheme, color: 'white', opacity: 1}} transition={{type: "tween", duration: 1}}><a id="tweet-quote" href={encodeURI(`http://www.twitter.com/intent/tweet?text=${quote} - ${author}`)} target="_blank"><FaTwitter id="twitter-icon"/></a></motion.button>
-            <motion.button id="new-quote" onClick={() => setQuoteAndAuthor()} initial={{backgroundColor: colorTheme, color: 'white', opacity: 0.1}} animate={{backgroundColor: colorTheme, color: 'white', opacity: 1}} transition={{type: "tween", duration: 1}}>New Quote</motion.button>  
+            <motion.button id="new-quote" onClick={() => getRandomQuote()} initial={{backgroundColor: colorTheme, color: 'white', opacity: 0.1}} animate={{backgroundColor: colorTheme, color: 'white', opacity: 1}} transition={{type: "tween", duration: 1}}>New Quote</motion.button>  
           </div>
         </div>
       </motion.header>
